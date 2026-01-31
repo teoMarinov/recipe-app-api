@@ -1,0 +1,7 @@
+[tool.basedpyright]
+typeCheckingMode = "basic"
+venvPath = "."      # Look in the current directory
+venv = ".venv"      # For a folder named .venv
+# Optional: if Django is still picky about types
+reportMissingImports = true
+reportUnknownVariableType = "none"

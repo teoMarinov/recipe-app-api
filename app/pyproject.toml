@@ -1,9 +1,0 @@
-[tool.ruff]
-# This targets the linter
-line-length = 88
-
-[tool.ruff.format]
-# This targets the formatter (used by Conform)
-quote-style = "single"
-indent-style = "space"
-skip-magic-trailing-comma = false

@@ -1,6 +1,8 @@
 {
+  "venvPath": ".",
+  "venv": ".venv",
   "include": ["."],
-  "exclude": ["**/node_modules", "**/__pycache__", "venv"],
+  "exclude": ["**/node_modules", "**/__pycache__", ".venv"],
   "reportAttributeAccessIssue": "none",
   "pythonVersion": "3.10",
   "typeCheckingMode": "basic"
