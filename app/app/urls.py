@@ -16,7 +16,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
-from drf_spectacular.views import (  # pyright: ignore[]
+from drf_spectacular.views import ( # pyright: ignore[] # type: ignore
     SpectacularAPIView,
     SpectacularSwaggerView,
 )
@@ -30,4 +30,5 @@ urlpatterns = [
         name='api-docs',
     ),
     path('api/user/', include('user.urls')),
+    path('api/recipe/', include('recipe.urls')),
 ]

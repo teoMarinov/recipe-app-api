@@ -1,5 +1,6 @@
 """Database models"""
 
+from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.contrib.auth.models import (
@@ -7,6 +8,7 @@ from django.contrib.auth.models import (
     BaseUserManager,
     PermissionsMixin,
 )
+from django.forms import CharField
 
 
 class UserManager(BaseUserManager):
@@ -15,7 +17,7 @@ class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_field):
         """Create, save and return a new user."""
         if not email:
-            raise ValueError('User must have an email')
+            raise ValueError("User must have an email")
 
         user = self.model(email=self.normalize_email(email), **extra_field)
         user.set_password(password)
@@ -26,7 +28,7 @@ class UserManager(BaseUserManager):
     def create_superuser(self, email, password=None, **extra_field):
         """Create, save and return a new user."""
         if not email:
-            raise ValueError('User must have an email')
+            raise ValueError("User must have an email")
 
         user = self.model(email=self.normalize_email(email), **extra_field)
         user.set_password(password)
@@ -47,4 +49,18 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = "email"
+
+
+class Recipe(models.Model):
+    """Recipe object."""
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+    time_minutes = models.IntegerField()
+    price = models.DecimalField(max_digits=5, decimal_places=2)
+    link = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return self.title
